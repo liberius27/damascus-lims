@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  backend:
+    build: ../backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: damascus_admin
+      POSTGRES_PASSWORD: JPRjpr27!
+      POSTGRES_DB: damascus_lims
+    ports:
+      - "5432:5432"
