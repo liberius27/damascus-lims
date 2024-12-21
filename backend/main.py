@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from routers import sample_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -11,12 +12,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-sample_data = [
-    {"id": 1, "name": "Sample A", "status": "Completed"},
-    {"id": 2, "name": "Sample B", "status": "Pending"},
-    {"id": 3, "name": "Sample C", "status": "In Progress"}
-]
+app.include_router(sample_router.router)
 
-@app.get("/samples")
-def get_samples():
-    return sample_data
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Damascus LIMS Backend"}
